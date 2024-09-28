@@ -1,0 +1,6 @@
+streamlit
+streamlit-chat
+google-generativeai
+google-cloud-bigquery
+pandas
+openpyxl
