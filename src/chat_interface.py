@@ -58,11 +58,6 @@ class ChatInterface:
         self.handle_user_input(user_input)
         self.display_chat_messages()
 
-import streamlit as st
-from streamlit_chat import message
-from src.ai_model import generate_response
-from src.bigquery_uploader import upload_to_bigquery
-
 class ChatInterface:
     def __init__(self):
         self.system_prompt = self.load_system_prompt()
@@ -132,7 +127,10 @@ class ChatInterface:
     def run(self):
         user_input = self.get_user_input()
         if user_input:
-            output = generate_response(self.system_prompt + user_input)
+            try:
+                output = generate_response(self.system_prompt + user_input)
+            except:
+                output = "Sorry I don't know the answer to that question."
             st.session_state.past.append(user_input)
             st.session_state.generated.append(output)
             

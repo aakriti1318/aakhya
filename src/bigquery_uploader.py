@@ -21,7 +21,7 @@ def upload_to_bigquery(file):
         job.result()
 
         table = client.get_table(table_id)
-        st.success(f"File {file.name} has been uploaded to BigQuery! {table.num_rows} rows loaded.")
+        # st.success(f"File {file.name} has been uploaded to BigQuery! {table.num_rows} rows loaded.")
         st.session_state.app_state['file_stored_gcp'] = True
 
     except Exception as e:
