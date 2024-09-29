@@ -1,8 +1,8 @@
-
 import streamlit as st
 from streamlit_chat import message
 from src.ai_model import generate_response
 from src.bigquery_uploader import upload_to_bigquery
+from src.file_processor import process_file
 
 class ChatInterface:
     def _init_(self):
@@ -101,13 +101,23 @@ class ChatInterface:
 
     def handle_file_upload(self):
         if st.session_state['show_upload']:
-            uploaded_file = st.file_uploader('Upload File', type=['csv', 'xlsx', 'txt'])
+            uploaded_file = st.file_uploader('Upload File', type=['csv', 'xlsx'])
             if uploaded_file is not None:
                 st.session_state.app_state['file_uploaded'] = True
                 st.session_state.uploaded_files.append(uploaded_file)
                 st.session_state['show_upload'] = False
-                st.session_state.past.append("File uploaded")
-                st.session_state.generated.append("File uploaded successfully! Would you like to upload another file or upload to GCP?")
+                
+                # Process the file and get the classification
+                preview_data, classification, looker_url = process_file(uploaded_file)
+                
+                # Display the preview and classification
+                st.write("File Preview (First 5 rows):")
+                st.write(preview_data)
+                st.write(f"Classification: {classification}")
+                st.write(f"Looker Studio URL: {looker_url}")
+
+                st.session_state.past.append("File uploaded and processed")
+                st.session_state.generated.append(f"File uploaded and processed successfully! Classification: {classification}. Would you like to upload another file or upload to GCP?")
 
                 option = st.radio("Choose an option:", ("Upload another file", "Upload to GCP"))
                 

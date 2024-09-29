@@ -87,24 +87,5 @@ def main():
                 st.write(f"{'✅' if value else '❌'} {key.replace('_', ' ').title()}")
             st.markdown("</div>", unsafe_allow_html=True)
 
-        # File Upload Section
-        if st.session_state['show_upload']:
-            # with st.container():
-            #     # st.markdown("<div class='upload-card'>", unsafe_allow_html=True)
-            #     st.subheader("File Upload muah!")
-            #     uploaded_file = st.file_uploader('Upload your data file', type=['csv', 'xlsx', 'txt', 'zip'])
-            #     if uploaded_file is not None:
-            #         st.success(f"File {uploaded_file.name} uploaded successfully!")
-            #         st.session_state.app_state['file_uploaded'] = True
-            #         st.session_state.uploaded_files.append(uploaded_file)
-            #         st.session_state['show_upload'] = False
-
-            #         if st.button("Upload to GCP"):
-            #             for file in st.session_state.uploaded_files:
-            #                 chat_interface.upload_to_bigquery(file)
-            #             st.session_state.uploaded_files = []
-            #     st.markdown("</div>", unsafe_allow_html=True)
-            pass
-
 if __name__ == "__main__":
     main()

@@ -12,7 +12,7 @@ def upload_to_bigquery(file):
 
         df = read_file(file)
         if df is None:
-            return
+            return None
 
         table_id = get_table_id(credentials, file)
         job_config = get_job_config()
@@ -21,12 +21,15 @@ def upload_to_bigquery(file):
         job.result()
 
         table = client.get_table(table_id)
-        # st.success(f"File {file.name} has been uploaded to BigQuery! {table.num_rows} rows loaded.")
+        st.success(f"File {file.name} has been uploaded to BigQuery! {table.num_rows} rows loaded.")
         st.session_state.app_state['file_stored_gcp'] = True
+
+        return table_id  # Return the table_id for further use
 
     except Exception as e:
         st.error(f"An error occurred while uploading {file.name} to BigQuery: {str(e)}")
         st.session_state.app_state['file_stored_gcp'] = False
+        return None
 
 def get_credentials():
     if 'GOOGLE_APPLICATION_CREDENTIALS' in os.environ:
