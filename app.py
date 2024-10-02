@@ -32,7 +32,7 @@ def load_config():
         return json.load(config_file)
 
 # Initialize Generative AI
-genai.configure(api_key='AIzaSyDhCOUW8tp3HFMYUJRjSi2mSk__VO607BI')
+genai.configure(api_key='..')
 
 # Utility functions
 def sanitize_table_name(name):
