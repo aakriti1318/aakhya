@@ -1,3 +1,5 @@
+# src/file_processor.py
+
 import pandas as pd
 from io import BytesIO
 from src.ai_model import generate_response
@@ -19,6 +21,7 @@ def process_file(uploaded_file):
 
     # Get the first 5 rows
     preview_data = df.head()
+    complete_data = df
 
     # Convert preview data to string for Gemini input
     preview_str = preview_data.to_string()
@@ -42,4 +45,4 @@ def process_file(uploaded_file):
     url_generator = LookerURLGenerator()
     looker_url = url_generator.get_looker_url(classification)
 
-    return preview_data, classification, looker_url
+    return complete_data, preview_data, classification, looker_url

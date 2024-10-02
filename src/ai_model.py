@@ -1,3 +1,5 @@
+# src/ai_model.py
+
 import google.generativeai as genai
 from src.config import load_api_credentials
 

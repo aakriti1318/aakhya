@@ -1,3 +1,4 @@
+# src/looker_url_generator.py
 class LookerURLGenerator:
     def __init__(self):
         self.urls = {

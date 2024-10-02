@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ISO-Compliant Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .classification {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ISO-Compliant Report</h1>
+    </div>
+    <div class="content">
+        <h2>Classification: {{ classification }}</h2>
+        <h3>Data Preview:</h3>
+        {{ preview | safe }}
+        <h3>Insights:</h3>
+        <p>{{ insights }}</p>
+    </div>
+</body>
+</html>

@@ -1,3 +1,4 @@
+# main.py
 import streamlit as st
 from src.chat_interface import ChatInterface
 from src.config import initialize_session_state

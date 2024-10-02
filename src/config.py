@@ -1,3 +1,5 @@
+# src/config.py
+
 import streamlit as st
 import json
 
@@ -18,8 +20,7 @@ def initialize_session_state():
             'file_uploaded': False,
             'file_stored_gcp': False,
             'model_trained': False,
-            'email_info': False,
-            'dashboard_created': False
+            'dashboard_created': False,
         }
     if 'uploaded_files' not in st.session_state:
         st.session_state.uploaded_files = []
